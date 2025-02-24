@@ -1,26 +1,15 @@
 import simpleImportSort from "eslint-plugin-simple-import-sort";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-  {
-    plugins: {
-      "simple-import-sort": simpleImportSort,
-    },
-    rules: {
-      "simple-import-sort/imports": "error",
-      "simple-import-sort/exports": "error",
-    },
+const eslintConfig = {
+  extends: [
+    "next/core-web-vitals",  // Configuração para o Next.js
+    "next/typescript",       // Configuração para o Next.js com TypeScript
+  ],
+  plugins: ["simple-import-sort"], // Adiciona o plugin `simple-import-sort`
+  rules: {
+    "simple-import-sort/imports": "error",  // Aplica a ordenação de imports
+    "simple-import-sort/exports": "error",  // Aplica a ordenação de exports (opcional)
   },
-];
+};
 
 export default eslintConfig;
